@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% block title %}<title>Document</title>{% endblock %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        :root {
+            --respect: #085D9C;
+            --respect-a: #085c9c88;
+            overflow-x: hidden;
+        }
+        
+        .text-respect {
+            color: var(--respect)!important;
+        }
+
+        .bg-respect {
+            background-color: var(--respect);
+        }
+
+        .btn-respect {
+            color: #fff;
+            background-color: var(--respect);
+            border-color: var(--respect);
+        }
+
+        .btn-respect:hover {
+            color: #fff;
+            background-color: var(--respect);
+            border-color: var(--respect);
+        }
+
+        .btn-respect:not(:disabled):not(.disabled).active:focus, .btn-respect:not(:disabled):not(.disabled):active:focus, .show>.btn-respect.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem var(--respect-a);
+        }
+
+        .btn-respect:not(:disabled):not(.disabled).active, .btn-respect:not(:disabled):not(.disabled):active, .show>.btn-respect.dropdown-toggle {
+            color: #fff;
+            background-color: var(--respect);
+            border-color: var(--respect);
+        }
+
+        .btn-outline-respect {
+            color: var(--respect);
+            background-color: transparent;
+            background-image: none;
+            border-color: var(--respect);
+        }
+
+        .btn-outline-respect:hover {
+            color: #fff;
+            background-color: var(--respect);
+            border-color: var(--respect);
+        }
+
+        .btn-outline-respect:not(:disabled):not(.disabled).active:focus, .btn-outline-respect:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-respect.dropdown-toggle:focus {
+            box-shadow: 0 0 0 0.2rem var(--respect-a);
+        }
+
+        .btn-outline-respect:not(:disabled):not(.disabled).active, .btn-outline-respect:not(:disabled):not(.disabled):active, .show>.btn-outline-respect.dropdown-toggle {
+            color: #fff;
+            background-color: var(--respect);
+            border-color: var(--respect);
+        }
+
+        .btn-circle.btn-sm {
+            width: 30px;
+            height: 30px;
+            padding: 6px 0px;
+            border-radius: 15px;
+            font-size: 8px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    {% block header %}
+        <nav class="navbar navbar-dark bg-respect">
+            <div class="container">
+                <div class="row">
+                    <img src="{% static 'img/wlogo512.png' %}" width="32">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col">
+                        <input type="search" class="form-control">
+                    </div>
+                    <button class="btn btn-outline-light btn-circle btn-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function (){
+        UpdateOnline()
+    })
+
+    function UpdateOnline() {
+        console.log(1)
+        $.ajax({
+            url: "{% url 'users:online' %}",
+            success: function (data) {
+                setTimeout(UpdateOnline, 1000*60*5)    
+            }
+        })
+    }
+</script>
+</html>
